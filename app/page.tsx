@@ -22,7 +22,7 @@ export default async function HomePage() {
     <>
       <div className="min-h-screen bg-gray-100">
         <header className="bg-[#3b5998] text-white shadow-sm">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-6xl mx-auto px-4 sm:px-2">
             <div className="flex items-center justify-between h-12">
               <h1 className="text-xl font-bold lowercase">facebook</h1>
               <div className="flex items-center gap-3">
@@ -38,7 +38,7 @@ export default async function HomePage() {
         </header>
 
         {/* Main Content */}
-        <main className="px-4 py-6">
+        <main className="px-4 py-6 sm:px-1 sm:py-3">
           <FacebookWall user={data.user} />
         </main>
       </div>
