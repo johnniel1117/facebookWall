@@ -2,9 +2,7 @@ import { createServerClient } from "@supabase/ssr"
 import { NextResponse, type NextRequest } from "next/server"
 
 export async function updateSession(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({
-    request,
-  })
+  let supabaseResponse = NextResponse.next()
 
   // With Fluid compute, don't put this client in a global environment
   // variable. Always create a new one on each request.
@@ -17,9 +15,7 @@ export async function updateSession(request: NextRequest) {
           return request.cookies.getAll()
         },
         setAll(cookiesToSet) {
-          supabaseResponse = NextResponse.next({
-            request,
-          })
+          supabaseResponse = NextResponse.next()
           cookiesToSet.forEach(({ name, value, options }) => supabaseResponse.cookies.set(name, value, options))
         },
       },
@@ -59,6 +55,10 @@ export async function updateSession(request: NextRequest) {
   // 4. Finally:
   //    return myNewResponse
   // If this is not done, you may be causing the browser and server to go out
+  // of sync and terminate the user's session prematurely!
+
+  return supabaseResponse
+}
   // of sync and terminate the user's session prematurely!
 
   return supabaseResponse
